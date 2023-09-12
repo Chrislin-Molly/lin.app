@@ -16,11 +16,11 @@ const routes: Routes = [
   { path:'products', component: ProductsComponent },
   { path:'shopping-cart', component: ShoppingCartComponent },
   { path:'check-out', component: CheckOutComponent ,canActivate:[PermissionsService]},
-  { path:'order-success', component: OrderSuccessComponent },
+  { path:'order-success', component: OrderSuccessComponent,canActivate:[PermissionsService] },
   { path:'login', component: LoginComponent },
-  { path:'admin/products', component: AdminProductsComponent },
-  { path:'admin/orders', component: AdminOrdersComponent },
-  { path:'my/orders', component: MyOrdersComponent }
+  { path:'admin/products', component: AdminProductsComponent ,canActivate:[PermissionsService]},
+  { path:'admin/orders', component: AdminOrdersComponent,canActivate:[PermissionsService] },
+  { path:'my/orders', component: MyOrdersComponent,canActivate:[PermissionsService] }
 ];
 
 @NgModule({

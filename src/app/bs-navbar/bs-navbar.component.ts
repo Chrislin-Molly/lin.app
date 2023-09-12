@@ -14,16 +14,16 @@ export class BsNavbarComponent implements OnInit, OnDestroy{
   public user!:firebase.User | null; //weird import
   public subscriptions: Array<Subscription>=[];
   constructor(private authService: AuthenticationService){}
-  ngOnInit(): void{
+  public ngOnInit(): void{
     this.subscriptions.push(
       this.authService.getAuthState().subscribe(user => this.user=user)
     )
   }
-  ngOnDestroy():void{
+  public ngOnDestroy():void{
     this.subscriptions.forEach(subscriptions => subscriptions.unsubscribe());
   }
 
-  logout(){
+  public logout(): void {
     this.authService.logout();
   }
 }
