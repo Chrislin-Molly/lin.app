@@ -35,7 +35,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy{
   public logout(): void {
     this.authService.logout();
   }
-  public getAppUser(){
+  public getAppUser(): void{
     this.subscriptions.push(
       this.userService.getUser(this.user!.uid).valueChanges().subscribe(appUser => {
         this.appUser = appUser;
