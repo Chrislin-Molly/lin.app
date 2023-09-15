@@ -10,6 +10,7 @@ export class PermissionsService implements CanActivate {
 
   constructor(private authService: AuthenticationService, private router:Router) { }
 
+  //authguards
   //return observable of a boolean...need to transform subscription to that
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean>{
     // this.authService.getAuthState().subscribe(
@@ -21,7 +22,7 @@ export class PermissionsService implements CanActivate {
     return this.authService.getAuthState().pipe(
       map(user => {
         if(user){return true;}
-        this.router.navigate(['/login'],{queryParams:{returnUrl: state.url}})
+        this.router.navigate(['/login'])
         return false;
       })
     )

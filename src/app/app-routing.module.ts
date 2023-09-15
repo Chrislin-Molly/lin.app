@@ -10,6 +10,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { LoginComponent } from './login/login.component';
 import { PermissionsService } from './services/permissions.service';
+import { AdminPermissionsService } from './services/admin-permissions.service';
 
 const routes: Routes = [
   { path:'', component: HomeComponent },
@@ -18,8 +19,8 @@ const routes: Routes = [
   { path:'check-out', component: CheckOutComponent ,canActivate:[PermissionsService]},
   { path:'order-success', component: OrderSuccessComponent,canActivate:[PermissionsService] },
   { path:'login', component: LoginComponent },
-  { path:'admin/products', component: AdminProductsComponent ,canActivate:[PermissionsService]},
-  { path:'admin/orders', component: AdminOrdersComponent,canActivate:[PermissionsService] },
+  { path:'admin/products', component: AdminProductsComponent ,canActivate:[PermissionsService, AdminPermissionsService]},
+  { path:'admin/orders', component: AdminOrdersComponent,canActivate:[PermissionsService, AdminPermissionsService] },
   { path:'my/orders', component: MyOrdersComponent,canActivate:[PermissionsService] }
 ];
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {AngularFireDatabaseModule} from '@angular/fire/compat/database'
+import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/compat/database'
 import {AngularFireAuthModule} from '@angular/fire/compat/auth'
 import { AngularFireModule } from '@angular/fire/compat';
 
@@ -37,9 +37,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     NgbModule
   ],
   providers: [],

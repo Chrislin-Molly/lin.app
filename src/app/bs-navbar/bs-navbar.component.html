@@ -18,8 +18,8 @@
             </a>
             <ul ngbDropdownMenu class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+              <li><a *ngIf="appUser!.isAdmin" class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
+              <li><a *ngIf="appUser!.isAdmin" class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a (click)="logout()" class="dropdown-item" >Log out</a></li>
             </ul>
