@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 
 import firebase from 'firebase/compat/app';
 import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
+import { AppUser } from '../models/interfaces';
 
 @Component({
   selector: 'bs-navbar',
@@ -12,11 +14,18 @@ import { AuthenticationService } from '../services/authentication.service';
 export class BsNavbarComponent implements OnInit, OnDestroy{
   
   public user!:firebase.User | null; //weird import
+  public appUser!: AppUser | null;
   public subscriptions: Array<Subscription>=[];
-  constructor(private authService: AuthenticationService){}
+  constructor(private authService: AuthenticationService, private userService: UserService){}
   public ngOnInit(): void{
     this.subscriptions.push(
-      this.authService.getAuthState().subscribe(user => this.user=user)
+      this.authService.getAuthState().subscribe(user => {
+        this.user=user;
+        if(this.user){
+          this.userService.saveUser(this.user);
+          this.getAppUser();
+        }
+      })
     )
   }
   public ngOnDestroy():void{
@@ -26,4 +35,12 @@ export class BsNavbarComponent implements OnInit, OnDestroy{
   public logout(): void {
     this.authService.logout();
   }
+  public getAppUser(){
+    this.subscriptions.push(
+      this.userService.getUser(this.user!.uid).valueChanges().subscribe(appUser => {
+        this.appUser = appUser;
+      })
+    )
+  }
+  
 }

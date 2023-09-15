@@ -9,17 +9,5 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'lin.app';
-  constructor(private router:Router, private authService: AuthenticationService){
-    authService.getAuthState().subscribe(user =>{
-      if(user){
-        let returnUrl=localStorage.getItem('returnUrl');
-        if(returnUrl){
-          router.navigateByUrl(returnUrl);
-        }
-        else{
-          router.navigate(['/']);
-        }
-      }
-    })
-  }
+  constructor(){ }
 }
